@@ -48,11 +48,15 @@ export default function HomePage(props) {
   function handleChange(e) {
     let value = e.target.value
     setStName(value)
+    setDataShow(allData.filter(el => el.name.first === stName))
+    // console.log(allData.filter(el => el.name.first.slice(0,stName.length-1) === stName), '<<<')
+    console.log(stName)
   }
 
   function handlegetName() {
     // filterShowData(allData, 'stName')
     setDataShow(allData.filter(show => show.name.first === stName))
+    dispatch(getAllData())
     setStName('')
   }
 
@@ -72,52 +76,51 @@ export default function HomePage(props) {
   }
   
   return (
-    <div>
+    <div className="w3-animate-opacity">
       <NavBar/>
       <div className="d-flex">
         <div class="sidenav p-3">
-          <a href="#"><i class="fas fa-home" style={{ marginRight: '10px' }}></i>Beranda</a>
-          <a href="#"><i class="fas fa-users" style={{ marginRight: '10px' }}></i>Personnel List</a>
-          <a href="#"><i class="far fa-calendar-alt" style={{ marginRight: '10px' }}></i>Daily Attendance</a>
+          <a href="#"><i class="fas fa-home iconSideBar"></i>Beranda</a>
+          <a href="#"><i class="fas fa-users iconSideBar"></i>Personnel List</a>
+          <a href="#"><i class="far fa-calendar-alt iconSideBar"></i>Daily Attendance</a>
         </div>
-        <div style={{ backgroundColor: '#E9ECEF', color: '#6B757D', width: '80%'}} class="main p-3">
-        {/* <p>{JSON.stringify(allData)}</p> */}
+        <div className="main p-3 contentDiv">
           <div className="container mb-3">
-            <div style={{ backgroundColor: 'white' }} className="p-3 mb-5 mt-4 d-flex justify-content-between">
+            <div className="p-3 mb-5 mt-4 d-flex justify-content-between bg-light">
               <div>
-                <h3 style={{ color: '#33BDBE' }}><b>PERSONNEL LIST</b></h3>
+                <h3 className="colorGad"><b>PERSONNEL LIST</b></h3>
                 <h5 className="mt-0">List of all Personnels</h5>
               </div>
               <div className="d-flex align-items-center justify-content-end">
                 <div className="input-group mx-2" style={{ width: '50%'}}>
-                  <span className="input-group-text" id="inputGroup-sizing-default"><i style={{ color: "#33BDBE" }} className="fas fa-search"></i></span>
+                  <span className="input-group-text" id="inputGroup-sizing-default"><i className="fas fa-search colorGad"></i></span>
                   <input value={stName} name="name" onChange={(e) => handleChange(e)} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Find Personnel"></input>
                 </div>
-                <button onClick={() => handlegetName()} style={{ backgroundColor: '#33BDBE', color: 'white' }} className="btn"><small><b>ADD PERSONNEL</b></small><i style={{ marginLeft: '10px' }} class="fas fa-plus"></i></button>
+                <button onClick={() => handlegetName()} className="btn btnSearch"><small><b>ADD PERSONNEL</b></small><i class="fas fa-plus iconPlus"></i></button>
               </div>
             </div>
             <div className="d-flex">
               <div className="row">
                 {dataShow.map((personnelData, i) => (
                   <div key={i} className="col-3">
-                    <div className="my-2 p-2" style={{ backgroundColor: 'white', borderRadius: '10px' }}>
-                      <div style={{ fontSize: '15px' }} className="d-flex justify-content-between align-items-center border-bottom">
+                    <div className="my-2 p-2 bg-light borderCard">
+                      <div className="idCard d-flex justify-content-between align-items-center border-bottom">
                         <span>
-                          Personnel ID: <span style={{ color: '#33BDBE' }}>{personnelData.id.value}</span>
+                          Personnel ID: <span className="colorGad">{personnelData.id.value}</span>
                         </span>
-                          <i style={{ fontSize: '15px'}} class="fas fa-ellipsis-h"></i>
+                          <i class="idCard fas fa-ellipsis-h"></i>
                       </div>
                       <div className="my-2 d-flex justify-content-center">
-                        <img style={{ borderRadius: '50%', width: '60%' }} src={personnelData.picture.large} alt="foto"></img>
+                        <img className="imgCard" src={personnelData.picture.large} alt="foto"></img>
                       </div>
-                      <div className="p-2">
-                        <h6 style={{ fontSize: '15px'}} className="mb-0"><b>Name</b></h6>
+                      <div className="p-2 text-break">
+                        <h6 className="idCard mb-0"><b>Name</b></h6>
                         <h6 className="mt-0">{personnelData.name.title} {personnelData.name.first} {personnelData.name.last}</h6>
-                        <h6 style={{ fontSize: '15px'}} className="mb-0"><b>Telephone</b></h6>
+                        <h6 className="idCard mb-0"><b>Telephone</b></h6>
                         <h6 className="mt-0">{personnelData.phone}</h6>
-                        <h6 style={{ fontSize: '15px'}} className="mb-0"><b>Brithday</b></h6>
+                        <h6 className="idCard mb-0"><b>Brithday</b></h6>
                         <h6 className="mt-0">{(personnelData.dob.date.toString()).slice(0, 10)}</h6>
-                        <h6 style={{ fontSize: '15px'}} className="mb-0"><b>Email</b></h6>
+                        <h6 className="idCard mb-0"><b>Email</b></h6>
                         <h6 className="mt-0">{personnelData.email}</h6>
                       </div>
                     </div>

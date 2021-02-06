@@ -44,6 +44,42 @@
   color: black;
 }
 
+.iconSideBar {
+  margin-right: 10px;
+}
+
+.contentDiv {
+  background-color: #E9ECEF;
+  color: #6B757D;
+  width: 80%;
+}
+
+.colorGad {
+  color: #33BDBE;
+}
+
+.btnSearch {
+  background-color:#33BDBE;
+  color: white;
+}
+
+.iconPlus {
+  margin-left: 10px;
+}
+
+.idCard {
+  font-size: 15px;
+}
+
+.imgCard {
+  border-radius: 50%;
+  width: 60%;
+}
+
+.borderCard {
+  border-radius: 10px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
