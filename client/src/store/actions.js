@@ -5,7 +5,7 @@ import { Swal, Toast } from '../config/swal'
 export function getAllData(payload) {
   return (dispatch) => {
     axios({
-      url: ``,
+      url: `https://randomuser.me/api/?results=28`,
       method: 'GET'
     })
     .then(({ data }) => {
