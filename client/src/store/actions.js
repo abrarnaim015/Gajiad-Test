@@ -11,7 +11,7 @@ export function getAllData(payload) {
     .then(({ data }) => {
       dispatch({
         type: 'SET_ALL_DATA',
-        payload: data
+        payload: data.results
       })
     })
     .catch(console.log)
